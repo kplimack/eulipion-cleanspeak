@@ -1,0 +1,10 @@
+name             'eulipion-cleanspeak'
+maintainer       'Jake Plimack'
+maintainer_email 'jake.plimack@gmail.com'
+license          'All rights reserved'
+description      'Installs/Configures Inversoft\'s CleanSpeak'
+long_description 'Installs/Configures Inversoft\'s CleanSpeak'
+version          '0.1.0'
+
+%w{ mysql postgresql tomcat test-helper }.each { |dep| depends dep }
+
