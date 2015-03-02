@@ -11,11 +11,17 @@ postgresql_packages.each do |pkg|
     describe service('postgresql') do
       it { should be_enabled }
       it { should be_running }
+      describe port(5432) do
+        it { should be_listening }
+      end
     end
   else
     describe service('postgresql') do
       it { should_not be_enabled }
       it { should_not be_running }
+      describe port(5432) do
+        it { should_not be_listening }
+      end
     end
   end
 end
