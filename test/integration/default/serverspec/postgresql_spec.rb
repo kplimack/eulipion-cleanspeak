@@ -11,7 +11,7 @@ postgresql_packages.each do |pkg|
     describe service('postgresql') do
       it { should be_enabled }
       it { should be_running }
-      describe port(5432) do
+      describe port($node['postgresql']['config']['port']) do
         it { should be_listening }
       end
     end
@@ -19,7 +19,7 @@ postgresql_packages.each do |pkg|
     describe service('postgresql') do
       it { should_not be_enabled }
       it { should_not be_running }
-      describe port(5432) do
+      describe port($node['postgresql']['config']['port']) do
         it { should_not be_listening }
       end
     end
