@@ -1,4 +1,3 @@
-require 'json'
 require_relative '../../../kitchen/data/spec_helper'
 
 postgresql_packages = %w{ postgresql-client-common }

@@ -1,0 +1,119 @@
+#
+# Copyright (c) 2012, Inversoft Inc., All Rights Reserved
+#
+
+# Enter your customer ID which is available from your account page at http://accounts.inversoft.com
+license.id=<%= @config[:license_id] %>
+
+# Specify the URL for your database here
+db_conf=<%= @db_config.inspect %>
+type=<%= @db_config[:type] %>
+database.url=jdbc:<%= @db_config[:type] %>://<%= @db_config[:host] %>:<%= @db_config[:port] %>/<%= @db_config[:name] %>
+database.username=<%= @db_config[:username] %>
+database.password=<%= @db_config[:password] %>
+
+# Specify the hostname, port, username and password for your email server. If your email server doesn't have a username
+# or password, leave them blank
+email.host=<%= @email_config[:host] %>
+email.port=<%= @email_config[:port] %>
+email.ssl=<%= @email_config[:ssl] %>
+email.username=<%= @email_config[:username] %>
+email.password=<%= @email_config[:password] %>
+email.from=<%= @email_config[:email_from]  %>
+
+# Specify the location of your CleanSpeak search engine servers. This must be a comma-separated list of hostname:port pairs
+# in this format server1:port,server2:port. The port specified should be the transport port for the# CleanSpeak Search Engine,
+# not the HTTP port.
+cleanspeak-search-engine.servers=localhost:8020
+
+# Specify the location of your CleanSpeak WebService servers using a list of comma separated URLs
+cleanspeak-webservice.urls=http://localhost:8001/
+
+# Specify an authentication if you want to secure the CleanSpeak WebService and Content Store. This is useful for servers
+# that are publicly accessible. Leave this blank if you don't need to secure CleanSpeak.
+authentication-token=
+
+# Specify the full path to the Solr data directory. This defaults to /usr/local/inversoft/cleanspeak-search-engine/data
+# on Linux/Unix and %CATALINA_HOME%\data on Windows if not specified
+cleanspeak-search-engine.data-directory=
+
+# Specify the management and HTTP ports for Tomcat
+cleanspeak-management-interface.management-port=<%= @tomcat_config['cleanspeak-management-interface.management-port'] %>
+cleanspeak-management-interface.http-port=<%= @tomcat_config['cleanspeak-management-interface.http-port'] %>
+cleanspeak-management-interface.https-port=<%= @tomcat_config['cleanspeak-management-interface.https-port'] %>
+cleanspeak-search-engine.transport-port=<%= @tomcat_config['cleanspeak-search-engine.transport-port'] %>
+cleanspeak-search-engine.http-port=<%= @tomcat_config['cleanspeak-search-engine.http-port'] %>
+cleanspeak-webservice.management-port=<%= @tomcat_config['cleanspeak-webservice.management-port'] %>
+cleanspeak-webservice.http-port=<%= @tomcat_config['cleanspeak-webservice.http-port'] %>
+cleanspeak-webservice.https-port=<%= @tomcat_config['cleanspeak-webservice.https-port'] %>
+
+# Specify the memory size for each of the CleanSpeak applications here. You can use M for megabytes and G for gigabytes
+cleanspeak-management-interface.memory=<%= @tomcat_config['cleanspeak-management-interface.memory'] %>
+cleanspeak-search-engine.memory=<%= @tomcat_config['cleanspeak-search-engine.memory'] %>
+cleanspeak-webservice.memory=<%= @tomcat_config['cleanspeak-webservice.memory'] %>
+
+# Specify any additional JVM arguments for each of the CleanSpeak applications
+cleanspeak-management-interface.additional-java-args=
+cleanspeak-search-engine.additional-java-args=
+cleanspeak-webservice.additional-java-args=
+
+# Configure your authentication mechanism. Currently, CleanSpeak supports authenticating users via the CleanSpeak database,
+# via SAML v2.0, or OAUTH v2.0 The authentication.system property must be either database, samlv2, or oauthv2.
+#
+# If you are using SAML v2.0, you must configure these properties:
+#
+#     authentication.samlv2.login-url - The URL of your IDP server
+#
+# Optionally, you can specify any of these properties
+#
+#     authentication.samlv2.response-verification-certificate-file - If your IDP signs the SAML response and you want
+#                                                                    CleanSpeak to verify the XML signature, this property
+#                                                                    must be set to the location of the certificate that
+#                                                                    contains the public key used to verify the signature.
+#
+# Lastly, if you are using the SingleAttributeForRolesRoleTranslator setting, you will need to specify these two additional
+# property for CleanSpeak to properly translate the a single attribue in the SAML response to one or more CleanSpeak
+# roles:
+#
+#     authentication.samlv2.single-attribute-for-roles - The name of the attribute in the SAML response that contains
+#                                                        the role(s) for the user that just logged in.
+#     authentication.samlv2.single-attribute-for-roles-mappings - A JSON object that contains a set of mappings between
+#                                                                 the value of the attribute in the SAML response and
+#                                                                 one or more CleanSpeak roles. Here is an example, JSON
+#                                                                 object (using backslashes for line breaks):
+#
+#             authentication.samlv2.single-attribute-for-roles-mappings={ \
+#                 "CN=group1": ["admin"], \
+#                 "CN=group2": ["filter_manager", "audit_viewer"], \
+#                 "CN=group3": ["moderator_manager", "user_admin"] \
+#               }
+#
+#
+#
+# If you are using OAUTH v2.0, you must configure these properties:
+#
+#    authentication.oauthv2.login-url     - The URL of your OAuth Provider
+#    authentication.oauthv2.client-id     - The ID your provider provided you
+#    authentication.oauthv2.client-secret - The Secret your provider provided you
+#    authentication.oauthv2.redirect-url  - The URL that the provider will redirect to inside CleanSpeak (e.g. http://myserver.com/oauth)
+#
+
+authentication.system=database
+
+#### Sample SAML Settings
+#authentication.system=samlv2
+#authentication.samlv2.login-url=https://you.idp.com/ssoLogin
+#authentication.samlv2.response-verification-certificate-file=/usr/local/inversoft/config/certificate.txt
+#authentication.samlv2.disable-role-mapping=false
+#authentication.samlv2.single-attribute-for-roles=MEMBEROF
+#authentication.samlv2.single-attribute-for-roles-mappings={\
+#  "CN=admin-role,OU=SomeGroup,DC=your,DC=idp,DC=com": ["admin"],\
+#  "CN=moderator-role,OU=SomeGroup,DC=your,DC=idp,DC=com": ["moderator"] \
+#}
+
+#### Sample OAuth Settings
+#authentication.system=oauthv2
+#authentication.oauthv2.provider=google
+#authentication.oauthv2.google.client-id=ClientIdForYourApplication
+#authentication.oauthv2.google.client-secret=ClientSecretForYourApplication
+#authentication.oauthv2.google.redirect-url=http://myserver.com/oauth

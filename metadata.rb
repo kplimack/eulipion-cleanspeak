@@ -6,5 +6,5 @@ description      'Installs/Configures Inversoft\'s CleanSpeak'
 long_description 'Installs/Configures Inversoft\'s CleanSpeak'
 version          '0.1.0'
 
-%w{ mysql postgresql tomcat test-helper }.each { |dep| depends dep }
+%w{ mysql postgresql tomcat test-helper database citadel java }.each { |dep| depends dep }
 
