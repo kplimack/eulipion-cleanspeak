@@ -24,6 +24,3 @@ suites:
         bucket: 'show-chef'
         access_key_id: <%= ENV['AWS_KEY'] %>
         secret_access_key: <%= ENV['AWS_SECRET'] %>
-      cleanspeak:
-        config:
-          license_id: 'farts'

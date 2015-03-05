@@ -7,7 +7,7 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 default[:cleanspeak][:version] = '3.0.1'
 default[:cleanspeak][:install] = {
   path: '/data/www/cleanspeak',
-  cookbooks: %w{ java postgresql::ruby }
+  cookbooks: %w{ java }
 }
 default[:cleanspeak][:database][:server] = {
   type: 'postgres',
