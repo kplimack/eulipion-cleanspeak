@@ -6,8 +6,6 @@
 license.id=<%= @config[:license_id] %>
 
 # Specify the URL for your database here
-db_conf=<%= @db_config.inspect %>
-type=<%= @db_config[:type] %>
 database.url=jdbc:<%= @db_config[:type] %>://<%= @db_config[:host] %>:<%= @db_config[:port] %>/<%= @db_config[:name] %>
 database.username=<%= @db_config[:username] %>
 database.password=<%= @db_config[:password] %>
