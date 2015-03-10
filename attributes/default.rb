@@ -11,6 +11,7 @@ default[:cleanspeak][:install] = {
 }
 default[:cleanspeak][:database][:server] = {
   type: 'postgres',
+  driver: 'postgresql',
   host: 'localhost', # if set to localhost, will include the `server` recipe, otherwise will use a remote host
   auth: 'citadel',
   citadel_path: "apps/cleanspeak_#{node.chef_environment}.json",
