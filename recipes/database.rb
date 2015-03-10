@@ -18,7 +18,7 @@ end
 db_connection = {
   host: node[:cleanspeak][:database][:server][:host],
   port: node[:cleanspeak][:database][:server][:port] || '5432',
-  username: 'postgres',
+  username: node[:cleanspeak][:database][:server][:user] || 'postgres'
   password: node[:postgresql][:password][:postgres]
 }
 
@@ -26,17 +26,17 @@ database node[:cleanspeak][:database][:server][:name] do
   connection db_connection
   provider db_provider
   action :create
+  only_if { node[:cleanspeak][:database][:server][:host] == 'localhost' }
 end
 case node[:cleanspeak][:database][:server][:type]
 when 'postgres'
   # RDS already has a user created, just do this for local setups
-  if node[:cleanspeak][:database][:server][:host] == 'localhost'
-    postgresql_database_user username do
-      connection db_connection
-      provider user_provider
-      action :create
-      password password
-    end
+  postgresql_database_user username do
+    connection db_connection
+    provider user_provider
+    action :create
+    password password
+    only_if { node[:cleanspeak][:database][:server][:host] == 'localhost' }
   end
 when 'mysql'
   mysql_database_user username do
