@@ -18,7 +18,7 @@ end
 db_connection = {
   host: node[:cleanspeak][:database][:server][:host],
   port: node[:cleanspeak][:database][:server][:port] || '5432',
-  username: node[:cleanspeak][:database][:server][:user] || 'postgres'
+  username: node[:cleanspeak][:database][:server][:user] || 'postgres',
   password: node[:postgresql][:password][:postgres]
 }
 
