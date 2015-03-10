@@ -29,11 +29,14 @@ database node[:cleanspeak][:database][:server][:name] do
 end
 case node[:cleanspeak][:database][:server][:type]
 when 'postgres'
-  postgresql_database_user username do
-    connection db_connection
-    provider user_provider
-    action :create
-    password password
+  # RDS already has a user created, just do this for local setups
+  if node[:cleanspeak][:database][:server][:host] == 'localhost'
+    postgresql_database_user username do
+      connection db_connection
+      provider user_provider
+      action :create
+      password password
+    end
   end
 when 'mysql'
   mysql_database_user username do
