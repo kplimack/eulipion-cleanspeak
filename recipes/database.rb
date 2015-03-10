@@ -21,6 +21,10 @@ db_connection = {
   username: node[:cleanspeak][:database][:server][:user] || 'postgres',
   password: node[:postgresql][:password][:postgres]
 }
+if node.has_key? 'ec2'
+  db_connection[:username] = username
+  db_connection[:password] = password
+end
 
 database node[:cleanspeak][:database][:server][:name] do
   connection db_connection
