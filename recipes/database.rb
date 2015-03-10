@@ -57,5 +57,6 @@ if node[:cleanspeak][:database][:server][:type] == 'postgres'
     database_name node[:cleanspeak][:database][:server][:name]
     sql 'VACUUM FULL VERBOSE ANALYZE'
     action :query
+    only_if { node[:cleanspeak][:database][:server][:vacuum] }
   end
 end
