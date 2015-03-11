@@ -23,13 +23,14 @@ email.from=<%= @email_config[:email_from]  %>
 # in this format server1:port,server2:port. The port specified should be the transport port for the# CleanSpeak Search Engine,
 # not the HTTP port.
 cleanspeak-search-engine.servers=localhost:8020
+cleanspeak-search-engine.urls=http://localhost:8021
 
 # Specify the location of your CleanSpeak WebService servers using a list of comma separated URLs
 cleanspeak-webservice.urls=http://localhost:8001/
 
 # Specify an authentication if you want to secure the CleanSpeak WebService and Content Store. This is useful for servers
 # that are publicly accessible. Leave this blank if you don't need to secure CleanSpeak.
-authentication-token=
+authentication-token=<%= @config[:auth_token] if @config.has_key? 'auth_token' %>
 
 # Specify the full path to the Solr data directory. This defaults to /usr/local/inversoft/cleanspeak-search-engine/data
 # on Linux/Unix and %CATALINA_HOME%\data on Windows if not specified
