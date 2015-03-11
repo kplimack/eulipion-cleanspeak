@@ -30,7 +30,7 @@ cleanspeak-webservice.urls=http://localhost:8001/
 
 # Specify an authentication if you want to secure the CleanSpeak WebService and Content Store. This is useful for servers
 # that are publicly accessible. Leave this blank if you don't need to secure CleanSpeak.
-authentication-token=<%= @config[:auth_token] if @config.has_key? 'auth_token' %>
+authentication-token=<%= @config[:auth_token] %>
 
 # Specify the full path to the Solr data directory. This defaults to /usr/local/inversoft/cleanspeak-search-engine/data
 # on Linux/Unix and %CATALINA_HOME%\data on Windows if not specified
