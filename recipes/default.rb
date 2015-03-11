@@ -28,6 +28,7 @@ when 'citadel'
   conf = JSON.parse(citadel('show-chef')[node[:cleanspeak][:database][:server][:citadel_path]])
   username = conf['username']
   password = conf['password']
+  auth_token = conf['auth_token']
   license = citadel('show-chef')["apps/#{node[:cleanspeak][:config][:license_id]}.license"]
 end
 
@@ -60,12 +61,15 @@ db_conf[:username] = username
 db_conf[:password] = password
 db_conf[:port] = node[:cleanspeak][:database][node[:cleanspeak][:database][:server][:type]][:port]
 db_conf = Hash[db_conf.map { |(k,v)| [ k.to_sym, v ] }]
-PP.pp db_conf
+
+config = (node[:cleanspeak][:config]).to_hash
+config[:auth_token] = auth_token
+config = Hash[config.map { |(k,v)| [ k.to_sym, v ] }]
 
 template "#{node[:cleanspeak][:config][:path]}/config/cleanspeak.properties" do
   source 'cleanspeak.properties.erb'
   variables({
-              config: node[:cleanspeak][:config],
+              config: config,
               tomcat_config: node[:cleanspeak][:config][:tomcat],
               db_config: db_conf,
               email_config: node[:cleanspeak][:email]
