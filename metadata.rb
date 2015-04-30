@@ -4,7 +4,7 @@ maintainer_email 'jake.plimack@gmail.com'
 license          'All rights reserved'
 description      'Installs/Configures Inversoft\'s CleanSpeak'
 long_description 'Installs/Configures Inversoft\'s CleanSpeak'
-version          '0.1.0'
+version          '0.1.1'
 
 %w{ mysql postgresql tomcat test-helper database citadel java }.each { |dep| depends dep }
 
