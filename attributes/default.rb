@@ -27,6 +27,7 @@ default[:cleanspeak][:config] = {
     'cleanspeak-management-interface.https-port' => '8013',
     'cleanspeak-search-engine.transport-port' => '8020',
     'cleanspeak-search-engine.http-port' => '8021',
+    'cleanspeak-search-engine.https-port' => '8022',
     'cleanspeak-webservice.management-port' => '8000',
     'cleanspeak-webservice.http-port' => '8001',
     'cleanspeak-webservice.https-port' => '8003',
